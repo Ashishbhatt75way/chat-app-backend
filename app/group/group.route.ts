@@ -11,5 +11,6 @@ router
     .delete('/:id', groupController.deleteGroup)
     .post('/',groupValidator.createGroup, catchError, groupController.createGroup)
     .put('/:id',groupValidator.updateGroup, catchError ,groupController.updateGroup)
+   .post('/:id/add', catchError, groupController.addMembers)
 
     export default router;

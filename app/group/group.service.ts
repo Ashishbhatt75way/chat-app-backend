@@ -1,8 +1,13 @@
 import { IGroup } from './group.dto'
 import groupSchema from './group.schema'
 
-export const createGroup = async (data: IGroup) => {
-  const result = await groupSchema.create(data)
+export const createGroup = async (data: IGroup , id: string) => {
+  const groupData = {
+    ...data,
+    admins: [id], 
+    members: [...(data.members || []), id],
+  };
+  const result = await groupSchema.create(groupData)
   return result
 }
 
@@ -31,4 +36,26 @@ export const updateGroup = async (id: string, data: IGroup) => {
   await groupSchema.findOneAndUpdate({ _id: id }, data);
   const result = await getGroupById(id);
   return result;
+}
+
+export const addMembers = async (groupId: string, adminId:string, memberId: string) => {
+  if (!memberId) {
+    throw new Error("User ID is required.");
+  }
+
+  const group = await groupSchema.findById(groupId);
+
+  if (!group) {
+    throw new Error("Group not found.");
+  }
+
+  if (!group.admins.includes(adminId)) {
+    throw new Error("Only admins can add members.");
+  }
+  const updatedMembers = [...new Set([...group.members, memberId])];
+
+  group.members = updatedMembers;
+  await group.save();
+
+  return group;
 }

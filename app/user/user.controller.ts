@@ -1,8 +1,8 @@
 
-import * as userService from "./user.service";
-import { createResponse } from "../common/helper/response.hepler";
+import { NextFunction, type Request, type Response } from 'express';
 import asyncHandler from "express-async-handler";
-import { type Request, type Response } from 'express'
+import { createResponse } from "../common/helper/response.hepler";
+import * as userService from "./user.service";
 
 export const createUser = asyncHandler(async (req: Request, res: Response) => {
     const result = await userService.createUser(req.body);
@@ -39,7 +39,8 @@ export const addMembers = asyncHandler(async (req: Request, res: Response) => {
     res.send(createResponse(result, "Members added successfully"));
 });
 
-export const login = asyncHandler(async(req:Request , res:Response) => {
-    const result = await userService.login(req.body)
-    res.send(createResponse(result))
+export const login = asyncHandler(async(req:Request , res:Response , next:NextFunction) => {
+    const result = await userService.login(req.body);
+    res.send(createResponse(result, "User logged in successfully"));
 })
+
