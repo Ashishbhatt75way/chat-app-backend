@@ -38,3 +38,16 @@ export const getUserByEmail = async (email: string) => {
     return result;
 }
 
+export const addMembers = async (id: string, data: Partial<IUser>) => {
+    const result = await UserSchema.findOneAndUpdate({ _id: id }, { $push: { members: data } });
+    return result;
+}
+
+export const login = async (data: Partial<IUser>) => {
+    const result = await UserSchema.findOne({ email: data.email });
+    if (!result) {
+         throw new Error("User not found")
+    }
+    
+    return result;
+}

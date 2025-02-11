@@ -61,7 +61,11 @@ export const initPassport = (): void => {
             done(createError(401, "Invalid email or password"), false);
             return;
           }
-          const { password: _p, ...result } = user;
+          const { password: _p, ...res } = user;
+          
+          const tokens = createUserTokens(res);
+          const result = {...res ,token: tokens.refreshToken};
+
           done(null, result, { message: "Logged in Successfully" });
         } catch (error: any) {
           done(createError(500, error.message));

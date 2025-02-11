@@ -12,6 +12,7 @@ export const getAllGroup = async () => {
 }
 
 export const getGroupById = async (id: string) => {
+  console.log(id);
   const result = await groupSchema.findById(id).lean()
   return result
 }
@@ -27,6 +28,7 @@ export const checkGroupAdmin = async (id: string, groupId: string) => {
 }
 
 export const updateGroup = async (id: string, data: IGroup) => {
-  const result = await groupSchema.findOneAndUpdate({ _id: id }, data)
-  return result
+  await groupSchema.findOneAndUpdate({ _id: id }, data);
+  const result = await getGroupById(id);
+  return result;
 }

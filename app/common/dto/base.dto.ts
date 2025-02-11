@@ -1,5 +1,7 @@
+import mongoose from 'mongoose';
+
 export interface BaseSchema {
-  _id: string;
+  _id: mongoose.Types.ObjectId | string;
   createdAt: string;
   updatedAt: string;
 }
