@@ -123,8 +123,8 @@ chat-app-backend/
 - `POST /api/groups` - Create a new group
 - `PUT /api/groups/:id` - Update group details
 - `DELETE /api/groups/:id` - Delete group
-- `POST /api/groups/:id/add` - Add members to a group
-- `PUT /api/groups/:id/make` - Make new group Admin
+- `POST /api/groups/:id/add-member` - Add members to a group
+- `PUT /api/groups/:id/make-admin` - Make new group Admin
 - `PUT /api/groups/:id/remove-admin` -  Remove group Admin
 
 

@@ -75,6 +75,13 @@ export const initPassport = (): void => {
   );
 };
 
+
+/**
+ * Creates an access token and refresh token for the given user.
+ * @param user Omitting the password property.
+ * @returns { accessToken: string, refreshToken: string }
+ */
+
 export const createUserTokens = (user: Omit<IUser, "password">) => {
   const jwtSecret = process.env.JWT_SECRET ?? "";
   const token = jwt.sign(user, jwtSecret);

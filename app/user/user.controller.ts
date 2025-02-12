@@ -78,13 +78,3 @@ export const addMembers = asyncHandler(async (req: Request, res: Response) => {
     const result = await userService.addMembers(req.params.id, req.body);
     res.send(createResponse(result, "Members added successfully"));
 });
-
-/**
- * @route POST /users/login
- * @desc Login a user
- * @access Public
- */
-export const login = asyncHandler(async(req:Request , res:Response , next:NextFunction) => {
-    const result = await userService.login(req.body);
-    res.send(createResponse(result, "User logged in successfully"));
-});

@@ -20,8 +20,8 @@ router.put(
   catchError,
   groupController.updateGroup,
 );
-router.post('/:id/add', groupValidator.addMember, catchError, groupController.addMembers);
-router.put('/:id/make',groupValidator.makeAdmin ,catchError, groupController.makeAdmin);
+router.post('/:id/add-member', groupValidator.addMember, catchError, groupController.addMembers);
+router.put('/:id/make-admin',groupValidator.makeAdmin ,catchError, groupController.makeAdmin);
 router.put('/:id/remove-admin',groupValidator.removeAdmin ,catchError, groupController.removeAdmin);
 
 export default router

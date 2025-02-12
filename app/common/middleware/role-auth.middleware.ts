@@ -5,6 +5,23 @@ import createHttpError from "http-errors";
 import process from "process";
 import { type IUser } from "../../user/user.dto";
 
+/**
+ * Middleware to handle role-based authorization for routes.
+ *
+ * This middleware checks if the request's user role is authorized to access the
+ * route. It verifies JWT tokens, checks user roles, and compares them against
+ * the allowed roles.
+ *
+ * @param {IUser['role']} roles - The roles that are allowed to access the route.
+ * @param {string[]} [publicRoutes=[]] - An array of route paths that are publicly accessible
+ * and do not require authentication.
+ *
+ * @returns {Function} An express middleware function that handles role-based authorization.
+ *
+ * @throws {createHttpError} Throws a 401 error if the token is invalid, if the user role
+ * is null or unauthorized, or if the user role is not included in the allowed roles.
+ */
+
 export const roleAuth = (
   roles: IUser['role'],
   publicRoutes: string[] = []
