@@ -25,7 +25,7 @@ This is a **Group Chat Application** built using **Express.js, Mongoose, JWT, Pa
 1. Clone the repository:
    ```sh
    git clone https://github.com/Ashishbhatt75way/chat-app-backend.git
-   cd group-chat-app
+   cd chat-app-backend
    ```
 2. Install dependencies:
    ```sh
@@ -54,6 +54,21 @@ This is a **Group Chat Application** built using **Express.js, Mongoose, JWT, Pa
     "active":true
   }
   ```
+
+## Project Related Attachments
+
+- Entity Relation Diagram Link
+
+   ```
+      https://drive.google.com/file/d/1CPhwUJ-sh-YE6yD_Jx94baBEyDLG5YoT/view?usp=drive_link
+   ```
+
+- Swagger Video Attachment
+
+   ```
+      https://drive.google.com/file/d/1gDYvrmHYL0qjcou6HwgeV7xqm7n2wcFr/view?usp=drive_link
+   ```
+
 
 ## Folder Structure
 
@@ -109,7 +124,7 @@ chat-app-backend/
 - `PUT /api/groups/:id` - Update group details
 - `DELETE /api/groups/:id` - Delete group
 - `POST /api/groups/:id/add` - Add members to a group
-
-
+- `PUT /api/groups/:id/make` - Make new group Admin
+- `PUT /api/groups/:id/remove-admin` -  Remove group Admin
 
 

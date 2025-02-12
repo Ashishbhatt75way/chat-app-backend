@@ -5,6 +5,12 @@ import bcrypt from 'bcrypt';
 
 const Schema = mongoose.Schema;
 
+        /**
+         * Hashes a given password using bcrypt with a salt of 12.
+         *
+         * @param {string} password - The password to hash.
+         * @returns {Promise<string>} - The hashed password.
+         */
 const hashPassword = async (password: string) => {
         const hash = await bcrypt.hash(password, 12);
         return hash;
