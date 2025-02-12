@@ -35,8 +35,18 @@ export const deleteGroup = asyncHandler(async (req: Request, res: Response) => {
 
 export const addMembers = asyncHandler(async (req: Request, res: Response) => {
   const { memberId , adminId } = req.body;
-  console.log(req.body);
-
   const result = await groupServices.addMembers(req.params.id,adminId, memberId);
   res.send(createResponse(result, 'Members added successfully'));
+});
+
+export const makeAdmin = asyncHandler(async (req: Request, res: Response) => {
+  const { adminId , memberId } = req.body;
+  const result = await groupServices.makeAdmin(req.params.id, adminId ,memberId);
+  res.send(createResponse(result, 'Admin added successfully'));
+})
+
+export const removeAdmin = asyncHandler(async (req: Request, res: Response) => {
+  const { adminId } = req.body;
+  const result = await groupServices.removeAdmin(req.params.id, adminId);
+  res.send(createResponse(result, 'Admin removed successfully'));
 });

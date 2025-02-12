@@ -1,7 +1,6 @@
 import express from "express";
-import { authenticateJWT } from "../common/middleware/auth-middleware";
-import { login, refreshToken } from "./auth.controller";
 import * as userValidation from "../user/user.validation";
+import { login } from "./auth.controller";
 
 const router = express.Router();
 
@@ -54,33 +53,5 @@ const router = express.Router();
  *         description: Unauthorized
  */
 router.post("/login", userValidation.loginUser, login);
-
-/**
- * @swagger
- * /auth/protected:
- *   get:
- *     summary: Access a protected route
- *     tags: [Auth]
- *     security:
- *       - BearerAuth: []
- *     responses:
- *       200:
- *         description: Successfully accessed the protected route
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: "You are authenticated"
- *                 user:
- *                   type: object
- *       401:
- *         description: Unauthorized, token missing or invalid
- */
-router.get("/protected", authenticateJWT, (req, res) => {
-  res.json({ message: "You are authenticated", user: req.user });
-});
 
 export default router;

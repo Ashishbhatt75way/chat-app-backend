@@ -173,7 +173,8 @@ router.put('/:id', groupValidator.updateGroup, catchError, groupController.updat
  *         description: Internal server error
  */
 router.post('/:id/add', catchError, groupController.addMembers);
-
+router.put('/:id/make', catchError, groupController.makeAdmin)
+router.put('/:id/removeAd', catchError, groupController.removeAdmin);
 
 
 export default router

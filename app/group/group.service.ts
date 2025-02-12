@@ -60,6 +60,23 @@ export const addMembers = async (groupId: string, adminId:string, memberId: stri
   return group;
 }
 
+export const removeAdmin = async(groupId: string, adminId: string) => {
+  const group = await groupSchema.findById(groupId);
+
+  if (!group) {
+    throw new Error("Group not found.");
+  }
+
+  if (!group.admins.includes(adminId)) {
+    throw new Error("Only admins can remove admins.");
+  }
+
+  group.admins = group.admins.filter((admin: string) => admin !== adminId);
+  await group.save();
+
+  return group;
+}
+
 export const removeMember = async (groupId: string, adminId: string, memberId: string) => {
   const group = await groupSchema.findById(groupId);
 
@@ -77,8 +94,7 @@ export const removeMember = async (groupId: string, adminId: string, memberId: s
   return group;
 }
 
-
-export const makeAdmin = async(groupId: string, adminId: string) => {
+export const makeAdmin = async(groupId: string, adminId: string ,memberId :string) => {
   const group = await groupSchema.findById(groupId);
 
   if (!group) {
@@ -89,7 +105,7 @@ export const makeAdmin = async(groupId: string, adminId: string) => {
     throw new Error("Only admins can make admins.");
   }
 
-  group.admins.push(adminId);
+  group.admins.push(memberId);
   await group.save();
 
   return group;

@@ -62,7 +62,7 @@ router.get('/', userController.getAllUser);
  *       500:
  *         $ref: '#/components/responses/InternalServerError'
  */
-router.get('/:id',authenticateJWT, catchError, userController.getUserById);
+router.get('/:id', catchError, userController.getUserById);
 
 /**
  * @swagger
