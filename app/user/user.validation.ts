@@ -16,10 +16,9 @@ export const updateUser = [
 ];
 
 export const editUser = [
-    body('name').isString().withMessage('name must be a string'),
-    body('email').isString().withMessage('email must be a string'),
-    body('active').isBoolean().withMessage('active must be a boolean'),
-    body('password').isString().withMessage('password must be a string'),
+    body('name').isString().withMessage('name must be a string').optional(),
+    body('email').isString().withMessage('email must be a string').optional(),
+    body('active').isBoolean().withMessage('active must be a boolean').optional(),
 ];
 
 export const loginUser = [

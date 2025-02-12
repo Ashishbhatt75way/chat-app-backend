@@ -1,10 +1,15 @@
 
-import { type BaseSchema } from "../common/dto/base.dto";
+import { Document } from 'mongoose';
 
-export interface IUser extends BaseSchema {
+interface User {
         name: string;
         email: string;
         active?: boolean;
         role: "USER" | "ADMIN";
         password: string
 }
+
+export interface IUser extends User, Document { }
+
+
+

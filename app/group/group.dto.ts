@@ -1,6 +1,6 @@
-import { type BaseSchema } from "../common/dto/base.dto";
+import { Document } from 'mongoose';
 
-export interface IGroup extends BaseSchema {
+export interface IGroup extends Document {
     name: string;
     admins : string[];
     active: boolean;

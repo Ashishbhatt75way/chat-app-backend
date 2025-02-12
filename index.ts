@@ -10,6 +10,7 @@ import { type IUser } from "./app/user/user.dto";
 import errorHandler from "./app/common/middleware/error-handler.middleware";
 import swaggerUi from 'swagger-ui-express';
 import routes from "./app/routes";
+const swaggerFile = require('./app/common/config/swagger-output.json');
 
 // import swaggerDocument from './swagger.json';
 
@@ -44,8 +45,9 @@ const initApp = async (): Promise<void> => {
 
   // set base path to /api
   app.use("/api", routes);
-  // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-  
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
+
   app.get("/", (req: Request, res: Response) => {
     res.send({ status: "ok" });
   });
